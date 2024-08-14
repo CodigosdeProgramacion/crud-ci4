@@ -1,67 +1,75 @@
-# CodeIgniter 4 Application Starter
+# CRUD en PHP utilizando CodeIgniter 4
 
-## What is CodeIgniter?
+Este proyecto demuestra cómo implementar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en PHP utilizando el framework CodeIgniter 4. Es ideal para aprender a manejar bases de datos y formularios en aplicaciones web con este framework.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Requisitos Previos
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- PHP 7.4 o superior
+  - Extensión [intl](http://php.net/manual/en/intl.requirements.php)
+  - Extensión [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- Servidor MySQL 5.7 o superior
+- Composer instalado
+- Servidor Apache o Nginx
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Instalación
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+1. Clona este repositorio en tu servidor local:
+    ```bash
+    git clone https://github.com/CodigosdeProgramacion/crud-ci4.git
+    ```
 
-## Installation & updates
+2. Accede al directorio del proyecto:
+    ```bash
+    cd crud-ci4
+    ```
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+3. Instala las dependencias del proyecto usando Composer:
+    ```bash
+    composer install
+    ```
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+4. Configura tu archivo de entorno `.env` para la conexión con la base de datos. Renombra el archivo `env` a `.env` y actualiza los valores de configuración:
 
-## Setup
+    ```bash
+    database.default.hostname = localhost
+    database.default.database = nombre_base_datos
+    database.default.username = tu_usuario
+    database.default.password = tu_contraseña
+    database.default.DBDriver = MySQLi
+    ```
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+5. Ejecuta las migraciones para crear las tablas necesarias y los seeders:
+    ```bash
+    php spark migrate
 
-## Important Change with index.php
+    php spark db:seed DepartamentosSeeder
+    ```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+6. Inicia el servidor de desarrollo de CodeIgniter:
+    ```bash
+    php spark serve
+    ```
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+7. Abre tu navegador y accede a `http://localhost:8080/empleados` para ver la aplicación en funcionamiento.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Funcionalidades
 
-## Repository Management
+Este proyecto incluye las siguientes operaciones CRUD:
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+- **Crear**: Agregar nuevos registros a la base de datos.
+- **Leer**: Mostrar una lista de registros almacenados.
+- **Actualizar**: Modificar registros existentes.
+- **Eliminar**: Borrar registros de la base de datos.
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## Contribuciones
 
-## Server Requirements
+Siéntete libre de contribuir al proyecto.
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+## Expresiones de Gratitud 🎁
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- Comenta a otros sobre este proyecto 📢
+- Invitame una cerveza 🍺 o un café ☕ [Da clic aquí](https://www.paypal.com/paypalme/markorobles?locale.x=es_XC.).
 
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
+## Licencia
 
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Este proyecto está licenciado bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
